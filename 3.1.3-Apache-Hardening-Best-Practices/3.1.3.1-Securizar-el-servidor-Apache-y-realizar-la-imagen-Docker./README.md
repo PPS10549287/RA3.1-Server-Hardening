@@ -73,6 +73,8 @@ Este archivo de configuración centraliza las directivas de seguridad avanzada q
 * **Hardening de Permisos:** Aplicación de permisos restrictivos (`750`) en directorios de configuración.
 * **Ocultación de Identidad:** Forzado de `ServerTokens Prod` para enmascarar la infraestructura.
 
+
+
 ### 5. Guía de Despliegue
 
 **Paso 1: Descargar la imagen**
