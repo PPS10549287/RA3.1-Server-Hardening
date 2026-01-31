@@ -1,0 +1,40 @@
+# 1. Heredamos de la Práctica 3 (Hardening + ModSec + OWASP)
+FROM pps10549287/pps-pr3:latest
+
+# 2. Instalamos mod-evasive y perl
+RUN apt-get update && apt-get install -y \
+    libapache2-mod-evasive \
+    perl \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# 3. Configuración de mod_evasive
+# Directorio de logs con permisos para Apache
+RUN mkdir -p /var/log/mod_evasive && chown -R www-data:www-data /var/log/mod_evasive
+
+# Copiamos tu archivo de configuración
+COPY evasive.conf /etc/apache2/mods-available/evasive.conf
+
+# 4. CREACIÓN DEL SCRIPT DE PRUEBA COMPATIBLE
+# Este script soluciona el error 400 añadiendo la cabecera Host obligatoria
+# (La justificación de añadir este error, se debe a problemas que estaba recibiendo con 
+# el script original, ante la situación preferí ser resolutivo).
+RUN echo 'use IO::Socket;\n\
+use strict;\n\
+print "Iniciando test de inundación (DoS)...\n";\n\
+for (my $i=0; $i<20; $i++) {\n\
+  my $sock = new IO::Socket::INET(PeerAddr => "127.0.0.1", PeerPort => "80", Proto => "tcp");\n\
+  if ($sock) {\n\
+    print $sock "GET / HTTP/1.1\\r\\nHost: localhost\\r\\nConnection: close\\r\\n\\r\\n";\n\
+    my $res = <$sock>;\n\
+    print "Peticion $i: $res";\n\
+    close($sock);\n\
+  }\n\
+  select(undef, undef, undef, 0.02); # Pequeña pausa para estabilidad\n\
+}' > /root/test.pl && chmod +x /root/test.pl
+
+# 5. Activamos el módulo
+RUN a2enmod evasive
+
+EXPOSE 80 443
+CMD ["apache2ctl", "-D", "FOREGROUND"]

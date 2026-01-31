@@ -1,0 +1,23 @@
+FROM pps10549287/pps-pr-cert:latest
+
+# 1. Usuario del sistema
+RUN groupadd apache && useradd -g apache apache
+
+# 2. Copiamos la nueva capa de hardening (Gold Image)
+COPY geekflare-hardening.conf /etc/apache2/conf-available/gold-image-hardening.conf
+
+# 3. Activamos la configuración y módulos necesarios
+# a2enconf busca el archivo en conf-available y lo activa
+RUN a2enmod rewrite headers && \
+    a2enconf gold-image-hardening
+
+# 4. Cambiamos el usuario de ejecución (Requisito del artículo)
+RUN sed -i 's/export APACHE_RUN_USER=.*/export APACHE_RUN_USER=apache/' /etc/apache2/envvars && \
+    sed -i 's/export APACHE_RUN_GROUP=.*/export APACHE_RUN_GROUP=apache/' /etc/apache2/envvars
+
+# 5. Permisos y seguridad de directorios
+RUN chown -R apache:apache /var/log/apache2 /var/log/mod_evasive /var/www/html && \
+    chmod -R 750 /etc/apache2/
+
+EXPOSE 80 443
+CMD ["apache2ctl", "-D", "FOREGROUND"]

@@ -1,0 +1,30 @@
+# 1. Heredamos de la imagen de la práctica 2 (Hardening + ModSecurity Base)
+FROM pps10549287/pps-pr2:latest
+
+# 2. Instalamos GIT y preparamos el directorio de caché para ModSecurity
+# Se crea /var/cache/modsecurity porque es requerido por la directiva SecDataDir
+RUN apt-get update && apt-get install -y \
+    git \
+    && apt-get clean \
+    && mkdir -p /var/cache/modsecurity \
+    && chown www-data:www-data /var/cache/modsecurity \
+    && rm -rf /var/lib/apt/lists/*
+
+# 3. Descargamos las Reglas OWASP CRS
+# NOTA: Usamos el repositorio oficial actual (coreruleset) en lugar del antiguo de SpiderLabs
+# para asegurar que tenemos las reglas más recientes y con soporte.
+RUN git clone https://github.com/coreruleset/coreruleset.git /tmp/owasp-crs \
+    && mv /tmp/owasp-crs/crs-setup.conf.example /etc/modsecurity/crs-setup.conf \
+    && mv /tmp/owasp-crs/rules /etc/modsecurity/rules \
+    && rm -rf /tmp/owasp-crs
+
+# 4. Copiamos la configuración que define el orden de carga de las reglas
+# Este archivo sobrescribe al de la P2 para incluir el CRS de OWASP.
+COPY security2.conf /etc/apache2/mods-available/security2.conf
+
+# No es necesario ejecutar a2enmod ni configurar SSL/HSTS/CSP, 
+# ya que se arrastran por herencia de las capas P1 y P2.
+
+EXPOSE 80 443
+
+CMD ["apache2ctl", "-D", "FOREGROUND"]

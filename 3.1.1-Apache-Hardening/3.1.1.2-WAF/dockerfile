@@ -1,0 +1,19 @@
+# Heredamos la primera imagen ya subida a Docker Hub
+FROM pps10549287/pps-pr1:latest
+
+# Solo instalamos el módulo de seguridad
+RUN apt-get update && apt-get install -y \
+    libapache2-mod-security2 \
+    && apt-get clean
+
+# Configuración de ModSecurity
+RUN cp /etc/modsecurity/modsecurity.conf-recommended /etc/modsecurity/modsecurity.conf \
+    && sed -i 's/SecRuleEngine DetectionOnly/SecRuleEngine On/' /etc/modsecurity/modsecurity.conf
+
+#Habilitamos el módulo security2 en Apache
+RUN a2enmod security2
+
+# No hace falta copiar csp_hsts.conf ni activar SSL, ya está integrado en la P1
+EXPOSE 80 443
+
+CMD ["apache2ctl", "-D", "FOREGROUND"]

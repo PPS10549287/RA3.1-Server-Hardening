@@ -1,0 +1,21 @@
+# Heredamos de la P4 (ya incluye ModSecurity, OWASP y Evasive)
+FROM pps10549287/pps-pr4:latest
+
+# Creamos el directorio y generamos el certificado autofirmado
+RUN mkdir -p /etc/apache2/ssl && \
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout /etc/apache2/ssl/apache.key \
+    -out /etc/apache2/ssl/apache.crt \
+    -subj "/C=ES/ST=Castellon/L=Castellon/O=Seguridad/CN=www.midominioseguro.com"
+
+# Copiamos la configuración del sitio SSL
+COPY default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
+
+# Activamos SSL, el módulo de cabeceras y configuramos los sitios
+RUN a2enmod ssl && \
+    a2enmod headers && \
+    a2ensite default-ssl.conf && \
+    a2dissite 000-default.conf
+
+EXPOSE 80 443
+CMD ["apache2ctl", "-D", "FOREGROUND"]

@@ -1,0 +1,30 @@
+# Usamos una imagen base estable
+FROM debian:bullseye
+
+# Instalar Apache y utilidades necesarias
+RUN apt-get update && apt-get install -y \
+    apache2 \
+    ssl-cert \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# 1. Deshabilitar el módulo autoindex (IMPORTANTE -f para forzar o da error).
+RUN a2dismod -f autoindex
+# Deshabilitamos además configuración de seguridad por defecto.
+RUN a2disconf security 
+
+# 2. Habilitar módulos necesarios: SSL y Headers (Práctica 1.2)
+RUN a2enmod ssl headers rewrite
+
+# 3. Copiar configuración de seguridad (CSP e HSTS) (Práctica 1.2 y 1.3)
+COPY csp_hsts.conf /etc/apache2/conf-available/security-hardened.conf
+RUN a2enconf security-hardened
+
+# 4. Configurar el VirtualHost SSL (Utilizamos los certificados generados por defecto snakeoil.pem)
+# Usamos el default-ssl que viene por defecto y lo activamos
+RUN a2ensite default-ssl
+
+# Exponer puertos
+EXPOSE 80 443
+
+# Ejecutar Apache en primer plano
+CMD ["apache2ctl", "-D", "FOREGROUND"]

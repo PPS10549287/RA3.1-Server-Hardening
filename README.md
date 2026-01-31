@@ -1,28 +1,31 @@
-# RA3
+# Introducción 
 
-Exploration of the ...
+El presente proyecto documenta el proceso de diseño, implementación y auditoría de una infraestructura web segura basada en el servidor Apache, utilizando una arquitectura de contenedores Docker. El objetivo fundamental es la creación de una Golden Image que consolide diversas capas de protección, siguiendo una metodología incremental de bastionado (hardening). 
 
-Includes the following:
-* [RA3_1](#TODO):
-* [RA3_2](#TODO):
-* [RA3_3](#TODO):
-* [RA3_4](#TODO):
+A lo largo de las distintas fases, se han integrado medidas de seguridad críticas que abarcan desde la reducción de la superficie de exposición y la gestión de cabeceras HTTP, hasta la implementación de un WAF (Web Application Firewall) con reglas OWASP, la mitigación de ataques de Denegación de Servicio (DoS) y el cifrado de comunicaciones mediante SSL/TLS. Cada etapa hereda las configuraciones de la anterior, garantizando así un sistema robusto, resiliente y alineado con los estándares de seguridad de la industria. 
 
-```
-.
-├── RA3
-│   ├── RA3_1
-│   │   ├── asset
-│   │   └── README.md
-│   ├── RA3_2
-│   │   ├── asset
-│   │   └── README.md
-│   ├── RA3_3
-│   │   ├── asset
-│   │   └── README.md
-│   └── RA3_4
-│       ├── asset
-│       └── README.md
-└── README.md
+# Bibliografía y otras fuentes consultadas 
 
-```
+Para el desarrollo de este proyecto se han utilizado recursos oficiales, documentación técnica y guías de referencia en ciberseguridad: 
+
+* **Repositorio Oficial de Imágenes (Docker Hub):** 
+
+Perfil de Usuario pps10549287 - Almacenamiento y registro de las imágenes generadas en cada práctica. 
+
+* **Repositorio de Código Fuente (GitHub):** 
+
+PPS_JAVLLUAPA - Código y Dockerfiles - Documentación técnica y scripts de construcción. 
+
+* **Documentación de Referencia (Hardening y Seguridad Web):** 
+
+Segarra, P. (2021). Hardening de Servidor Web. Ciberseguridad-PePS 
+
+Segarra, P. (2020). Implementación de SSL/TLS. Ciberseguridad-PePS 
+
+Geekflare. (2023). Apache Web Server Hardening & Security Guide. Geekflare Cybersecurity 
+
+* **Otras herramientas: Documentación oficial de Apache HTTP Server, ModSecurity Core Rule Set (CRS) y manuales de Docker Engine.** 
+
+# Conclusión 
+
+Este proyecto demuestra una arquitectura de Defensa en Profundidad real. Cada práctica ha añadido una capa de robustez que la Gold Image final ha consolidado, resultando en un servidor Apache optimizado para resistir ataques modernos. 
