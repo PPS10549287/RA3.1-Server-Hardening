@@ -10,11 +10,13 @@ Para el desarrollo de este proyecto se han utilizado recursos oficiales, documen
 
 * **Repositorio Oficial de Imágenes (Docker Hub):** 
 
-Perfil de Usuario pps10549287 - Almacenamiento y registro de las imágenes generadas en cada práctica. 
+Perfil de Usuario pps10549287 - Almacenamiento y registro de las imágenes generadas en cada práctica.
+https://hub.docker.com/u/pps10549287
 
 * **Repositorio de Código Fuente (GitHub):** 
 
-PPS_JAVLLUAPA - Código y Dockerfiles - Documentación técnica y scripts de construcción. 
+RA3.1-Server Hardening - Código y Dockerfiles - Documentación técnica y scripts de construcción. 
+https://github.com/PPS10549287/RA3.1-Server-Hardening/blob/main/README.md
 
 * **Documentación de Referencia (Hardening y Seguridad Web):** 
 
