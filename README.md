@@ -19,10 +19,13 @@ PPS_JAVLLUAPA - Código y Dockerfiles - Documentación técnica y scripts de con
 * **Documentación de Referencia (Hardening y Seguridad Web):** 
 
 Segarra, P. (2021). Hardening de Servidor Web. Ciberseguridad-PePS 
+https://psegarrac.github.io/Ciberseguridad-PePS/tema3/seguridad/web/2021/03/01/Hardening-Servidor.html
 
 Segarra, P. (2020). Implementación de SSL/TLS. Ciberseguridad-PePS 
+https://psegarrac.github.io/Ciberseguridad-PePS/tema1/practicas/2020/11/08/P1-SSL.html
 
 Geekflare. (2023). Apache Web Server Hardening & Security Guide. Geekflare Cybersecurity 
+https://geekflare.com/cybersecurity/apache-web-server-hardening-security/
 
 * **Otras herramientas: Documentación oficial de Apache HTTP Server, ModSecurity Core Rule Set (CRS) y manuales de Docker Engine.** 
 
