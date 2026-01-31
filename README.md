@@ -19,6 +19,9 @@ A lo largo de las distintas fases, se han integrado medidas de seguridad crític
 # 3.1-Memoria
 * **PR_RA3_1_JAVLLUAPA_CIBERSEGURIDAD.pdf**
 
+# REPOSITORIO
+<img width="985" height="756" alt="image" src="https://github.com/user-attachments/assets/3fd973ed-97c2-458f-9bc6-641ed7f746d7" />
+
 # Bibliografía y otras fuentes consultadas 
 
 Para el desarrollo de este proyecto se han utilizado recursos oficiales, documentación técnica y guías de referencia en ciberseguridad: 
