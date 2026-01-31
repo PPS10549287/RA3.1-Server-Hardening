@@ -4,6 +4,14 @@ El presente proyecto documenta el proceso de diseño, implementación y auditor�
 
 A lo largo de las distintas fases, se han integrado medidas de seguridad críticas que abarcan desde la reducción de la superficie de exposición y la gestión de cabeceras HTTP, hasta la implementación de un WAF (Web Application Firewall) con reglas OWASP, la mitigación de ataques de Denegación de Servicio (DoS) y el cifrado de comunicaciones mediante SSL/TLS. Cada etapa hereda las configuraciones de la anterior, garantizando así un sistema robusto, resiliente y alineado con los estándares de seguridad de la industria. 
 
+# 3.1.1-Apache-Hardening
+
+# 3.1.2-Certificados
+
+# 3.1.3-Apache-Hardening-Best-Practices
+
+# 3.1-Memoria
+
 # Bibliografía y otras fuentes consultadas 
 
 Para el desarrollo de este proyecto se han utilizado recursos oficiales, documentación técnica y guías de referencia en ciberseguridad: 
