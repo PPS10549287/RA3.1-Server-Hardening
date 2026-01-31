@@ -29,3 +29,8 @@ Geekflare. (2023). Apache Web Server Hardening & Security Guide. Geekflare Cyber
 # Conclusión 
 
 Este proyecto demuestra una arquitectura de Defensa en Profundidad real. Cada práctica ha añadido una capa de robustez que la Gold Image final ha consolidado, resultando en un servidor Apache optimizado para resistir ataques modernos. 
+
+### Autor
+Javier Lluesma Aparici IES El Caminàs
+
+Puesta en Producción Segura (Especialización Ciberseguridad)
